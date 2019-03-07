@@ -58,7 +58,7 @@ The main input is a corpus with UTF=8 encoding, representing the corpus.
 
 `在今年全英羽球公開賽前，「世界球后」<NE>戴資穎</NE>的世界排名積分，僅領先第2名、日本好手<NE>山口茜</NE>5826分，理論上尋求衛冕的<NE>戴資穎</NE>，是有可能在打不好的情況下，被<NE>山口茜</NE>取代球后寶座，不過這一切隨著<NE>戴資穎</NE>順利闖進今年全英羽球公開賽 4強而宣告破滅，<NE>戴資穎</NE>確定將續坐球后寶座。`
 
-Note: Training, testing corpus could not contain <NE>、</NE> and <Separator> for they are reserved keywords. Change the entity start and end tags  in config.ini ([PreProcessing] section: Sentence_Separator, Entity_Start, Entity_End).
+Note: Training, testing corpus could not contain `<NE>`、`</NE>` and `<Separator>` for they are reserved keywords. Change the entity start and end tags  in config.ini ([PreProcessing] section: Sentence, Entity_Start, Entity_End).
 Config.ini contains the following parameters:
 
 | Name               | Description                                            |
@@ -67,8 +67,8 @@ Config.ini contains the following parameters:
 | CorpusTraining     | The directory name for training corpus                 |
 | CorpusTesting      | The directory name for testing corpus                  |
 | WorkFolder         | Working directory, default: WorkFolder                 |
-| Entity_Start       | Start of entity, default: <NE>                         |
-| Entity_End         | End of entity, default: </NE>                          |
+| Entity_Start       | Start of entity, default: `<NE>`                         |
+| Entity_End         | End of entity, default: `</NE>`                          |
 
 
 
