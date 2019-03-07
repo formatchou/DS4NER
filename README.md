@@ -67,8 +67,6 @@ Config.ini contains the following parameters:
 | CorpusTraining     | The directory name for training corpus                 |
 | CorpusTesting      | The directory name for testing corpus                  |
 | WorkFolder         | Working directory, default: WorkFolder                 |
-| Separator_Start    | Start of sentence, default value=0.2, default: <Split> |
-| Separator_End      | End of sentence, default value=0.2, default:</Split>   |
 | Entity_Start       | Start of entity, default: <NE>                         |
 | Entity_End         | End of entity, default: </NE>                          |
 
