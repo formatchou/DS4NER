@@ -36,3 +36,45 @@ DS4NER is a simple, customizable implementation of Distant Supervision for Named
 `evaluation.cmd or evaluation.sh`
 
 > This batch file uses the trained model "Corpus.model" in the "Corpus\Training" directory and the test corpus "LabeledExtractorCorpus.txt" in the "Corpus\Testing" directory as input. The output is shown in "WorkFolder\Eva_Exact" and "WorkFolder\Eva_Partial" directories, representing the performance evaluation in terms of exact match and partial match. Note that the batch also includes Pre-Processing, Feature Generation, CRF Testing.
+
+
+
+
+
+## File formats
+The main input is a corpus with UTF=8 encoding, representing the corpus.
+
+**Seeds file: Every line is an entity**
+```
+王建民
+林書豪
+李安
+```
+
+**Corpus: Each line represents a sentence**
+
+```
+郭泓志、羅嘉仁也可能搶進最後名單，還有18歲超級新秀曾仁和等，都是重點討論人選。
+猿隊甫給「小飛機」陳冠任一紙3年總值936萬元的合約，正好成為周思齊的最佳比較指標。
+```
+
+**Testing corpus: Use <NE>, </NE> tag pairs for labeling recognized entities**
+`在今年全英羽球公開賽前，「世界球后」<NE>戴資穎</NE>的世界排名積分，僅領先第2名、日本好手<NE>山口茜</NE>5826分，理論上尋求衛冕的<NE>戴資穎</NE>，是有可能在打不好的情況下，被<NE>山口茜</NE>取代球后寶座，不過這一切隨著<NE>戴資穎</NE>順利闖進今年全英羽球公開賽 4強而宣告破滅，<NE>戴資穎</NE>確定將續坐球后寶座。`
+
+Note: Training, testing corpus could not contain <NE>、</NE> and <Separator> for they are reserved keywords. Change the entity start and end tags  in config.ini ([PreProcessing] section: Sentence_Separator, Entity_Start, Entity_End).
+Config.ini contains the following parameters:
+
+| Name               | Description                                            |
+| -------------------| -------------------------------------------------------|
+| CorpusDir          | Corpus directory                                       |
+| CorpusTraining     | The directory name for training corpus                 |
+| CorpusTesting      | The directory name for testing corpus                  |
+| WorkFolder         | Working directory, default: WorkFolder                 |
+| Separator_Start    | Start of sentence, default value=0.2, default: <Split> |
+| Separator_End      | End of sentence, default value=0.2, default:</Split>   |
+| Entity_Start       | Start of entity, default: <NE>                         |
+| Entity_End         | End of entity, default: </NE>                          |
+
+
+
+
