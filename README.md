@@ -67,9 +67,63 @@ Config.ini contains the following parameters:
 | CorpusTraining     | The directory name for training corpus                 |
 | CorpusTesting      | The directory name for testing corpus                  |
 | WorkFolder         | Working directory, default: WorkFolder                 |
-| Entity_Start       | Start of entity, default: `<NE>`                         |
-| Entity_End         | End of entity, default: `</NE>`                          |
+| Entity_Start       | Start of entity, default:`<NE>`                         |
+| Entity_End         | End of entity, default:`</NE>`                          |
+
+## Automatic labeling
+`Java –cp NER.jar PrepareData.AutoLabeling -strInput_S <Input Corpus> -strSeeds_S <Seed File> -strOutput_L <Output Corpus> -bFilterNegExamples True -bPreProcessing True`
+
+> Automatic labeling use the Corpus.txt and Seeds.txt file in the "Corpus\Training" directory for unlabeled training corpus and seed entities. The output is labeled corpus in the WorkFolder\Training\Corpus_L.txt。
+> 
+* Use "-strInput" or "-strSeeds" to chan
+* ge Corpus and names in the entity list. 
+* Use "-bFilterNegExamples True" to remove sentences not containing entities. 
+* Use "-bPreProcessing True" to show the preprocessing time. 
+* When "-bPreProcessing True" then the corpus source is "Corpus\Training"; otherwise "-bPreProcessing False" then source is "Workfolder\Training".
+
+## Dictionary mining
+`java -cp NER.jar PrepareData.MineDict -strInput_L <Labeled Corpus> -strMethod Supp -fThreshold 0.5f`
+
+* Given automatically labeled Corpus_L.txt under "WorkFolder\Training\" directory, output 4 dictionaries under the "WorkFolder\Dictionary".
+* Use "-strInput_L", "-strMethod", and "-fThreshold" to specify input labeled corpus, feature selection method (Supp、Conf、HMCS)  and the parameter。
+* 
+
+## Feature generation
+`java -cp NER.jar PrepareData.GenFeature -strInput_L <Labeled Corpus>　-strOutput_F <Labeled Matrix> -strType Training -bPreProcessing False`
+
+* 特徵擷取使用「WorkFolder\Training」目錄下的Corpus_L.txt，以及「WorkFolder\Dictionary」 下的字典檔做為輸入，產生特徵矩陣標記資料檔案Corpus_F.txt。
+* 可以透過-strInput_L、-strOutput_F、strType改變<Labeled Corpus>輸入及<Labeled Matrix>輸出檔名以及此特徵矩陣標記檔案的用途(Training、Testing…)。輸入檔案為包含標記的文件。
+* -bPreProcessing: 輸入檔案是否需執行前處理，依據-StrType以及-bPreProcessing兩個參數決定資料來源，細節請參考文件。
 
 
+## Model training & testing with CRF++
+`java -cp NER.jar Training.CRF -strInput_F <Labeled Matrix> -strModel <Model Name>`
 
+* 訓練模型使用Automatic labeling產出的已標記資料，預設輸入檔案預設位置為:「WorkFolder\Training\Corpus_F.txt」，輸出模型檔案位置為「WorkFolder\Training\Corpus.model
+* strInput_F: 輸入檔案格式為Feature Generation的輸出Labeled Matrix，預設檔案放置目錄為「WorkFolder\Training」。
+* strModel: 輸出模型的檔案名稱，使用方法「-strModel Corpus.model」。預設輸出檔案放置目錄為「WorkFolder\Training」。
+ 
+
+`java -cp NER.jar PrepareData.GenFeature -strInput_L <Labeled Corpus> -strOutput_F <Labeled Matrix> -strType Testing -bPreProcessing True`
+
+* strInput_L: 輸入檔案格式為Feature Generation的輸出<Labeled Matrix>，預設位置為: 「Corpus\Testing\TestCorpus_F.txt」。
+* strOutput_F: 轉成特徵矩陣標記格式的輸出，預設輸出檔案放置目錄為「WorkFolder\Testing」。
+* -bPreProcessing: 輸入檔案是否需執行前處理，依據-StrType以及-bPreProcessing兩個參數決定資料來源，細節請參考文件。
+
+`java -cp NER.jar Testing.Evaluation -strModel Corpus.model -strMethod <Method> -strOutput_Dir <Folder Name>`
+
+* strMethod: 評估方式有兩種分別是「Exact」和「Partial」，使用方法「- strMethod Partial or Exact」。
+* strOutput_Dir: 評估結果的輸出目錄，使用方法「-strOutput_Dir Eva_Partial」。預設輸出目錄位於「WorkFolder」目錄下。
+
+## Data crawling
+`java -cp NER.jar Crawler.WebCrawler -strSeeds <Seed File> -strOutput <Output File>`
+
+* 爬取語料庫: 若使用者有興趣自行收集資料，DS4NER亦提供一支Crawler (網路爬蟲)，可自Google的搜尋結果中擷取包含seed的句子作為語料。
+* strSeeds: 關鍵字清單的檔案名稱，檔案格式參考Seed file。預設實體列表檔案放置路徑為「Corpus\Training」。
+* strOutput: 輸出語料庫的檔案名稱，檔案格式參考Corpus format。預設輸出檔案放置路徑為「Corpus\Training」。
+
+## References
+* Chien-Lung Chou, Chia-Hui Chang, Yuan-Hao Lin, On the construction of NER model training tools based distant supervision, In preparation
+* Chien-Lung Chou, Chia-Hui Chang, Ya-Yun Huang, Boosted Web Named Entities Recognition via Tri-Training, Transactions on Asian and Low-Resource Language Information Processing, Volume 16 Issue 2, 2016.
+* Chien-Lung Chou, Chia-Hui Chang: Named Entity Extraction via Automatic Labeling and Tri-training: Comparison of Selection Methods. AIRS 2014: 244-25. 
 
