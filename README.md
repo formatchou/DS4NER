@@ -85,8 +85,7 @@ Config.ini contains the following parameters:
 `java -cp NER.jar PrepareData.MineDict -strInput_L <Labeled Corpus> -strMethod Supp -fThreshold 0.5f`
 
 * Given automatically labeled Corpus_L.txt under "WorkFolder\Training\" directory, output 4 dictionaries under the "WorkFolder\Dictionary".
-* Use "-strInput_L", "-strMethod", and "-fThreshold" to specify input labeled corpus, feature selection method (Supp、Conf、HMCS)  and the parameter。
-* 
+* Use "-strInput_L", "-strMethod", and "-fThreshold" to specify input labeled corpus, feature selection method (Supp、Conf、HMCS)  and the parameter。 
 
 ## Feature generation
 `java -cp NER.jar PrepareData.GenFeature -strInput_L <Labeled Corpus>　-strOutput_F <Labeled Matrix> -strType Training -bPreProcessing False`
@@ -126,4 +125,3 @@ Config.ini contains the following parameters:
 * Chien-Lung Chou, Chia-Hui Chang, Yuan-Hao Lin, On the construction of NER model training tools based distant supervision, In preparation
 * Chien-Lung Chou, Chia-Hui Chang, Ya-Yun Huang, Boosted Web Named Entities Recognition via Tri-Training, Transactions on Asian and Low-Resource Language Information Processing, Volume 16 Issue 2, 2016.
 * Chien-Lung Chou, Chia-Hui Chang: Named Entity Extraction via Automatic Labeling and Tri-training: Comparison of Selection Methods. AIRS 2014: 244-25. 
-
