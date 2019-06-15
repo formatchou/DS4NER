@@ -122,8 +122,8 @@ Config.ini contains the following parameters:
 * strOutput: 輸出語料庫的檔案名稱，檔案格式參考Corpus format。預設輸出檔案放置路徑為「Corpus\Training」。
 
 ## References
-*Chien-Lung Chou, Chia-Hui Chang, Yuan-Hao Lin, On the construction of NER model training tools based distant supervision, In preparation
-*Chien-Lung Chou, Chia-Hui Chang, Mining features for web ner model construction based on distant learning. IALP 2017
-*Chien-Lung Chou, Chia-Hui Chang, Ya-Yun Huang, Boosted Web Named Entities Recognition via Tri-Training, Transactions on Asian and Low-Resource Language Information Processing, Volume 16 Issue 2, November 2016.
-*Ya-Yun Huang, Chia-Hui Chang, Chien-Lung Chou, A Tool for Web NER Model Generation Using Search Snippets of Known Entities (基於已知名稱搜尋結果的網路實體辨識模型建立工具), ROCLING 2015.
-*Chien-Lung Chou, Chia-Hui Chang: Named Entity Extraction via Automatic Labeling and Tri-training: Comparison of Selection Methods. AIRS 2014: 244-25.
+* Chien-Lung Chou, Chia-Hui Chang, Yuan-Hao Lin, On the construction of NER model training tools based distant supervision, In preparation
+* Chien-Lung Chou, Chia-Hui Chang, Mining features for web ner model construction based on distant learning. IALP 2017
+* Chien-Lung Chou, Chia-Hui Chang, Ya-Yun Huang, Boosted Web Named Entities Recognition via Tri-Training, Transactions on Asian and Low-Resource Language Information Processing, Volume 16 Issue 2, November 2016.
+* Ya-Yun Huang, Chia-Hui Chang, Chien-Lung Chou, A Tool for Web NER Model Generation Using Search Snippets of Known Entities (基於已知名稱搜尋結果的網路實體辨識模型建立工具), ROCLING 2015.
+* Chien-Lung Chou, Chia-Hui Chang: Named Entity Extraction via Automatic Labeling and Tri-training: Comparison of Selection Methods. AIRS 2014: 244-25.
